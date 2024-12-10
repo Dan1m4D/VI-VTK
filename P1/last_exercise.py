@@ -1,27 +1,22 @@
 from vtkmodules.all import *
 
 def render_main_cone():
-    """Renders the main sphere in the center of the scene."""
     coneSource = vtkConeSource()
     coneSource.SetCenter(0.5, 0.0, 0.5)
     coneSource.SetHeight(2.0)
     coneSource.SetRadius(1.0)
     coneSource.SetResolution(100)
 
-    sphereMapper = vtkPolyDataMapper()
-    sphereMapper.SetInputConnection(coneSource.GetOutputPort())
+    coneMapper = vtkPolyDataMapper()
+    coneMapper.SetInputConnection(coneSource.GetOutputPort())
 
-    sphereActor = vtkActor()
-    sphereActor.SetMapper(sphereMapper)
+    coneActor = vtkActor()
+    coneActor.SetMapper(coneMapper)
 
-    return sphereActor
+    return coneActor
 
-def createLightWithSphere(renderer, color, position):
-    """
-    Creates a light of the given color and position, and adds a sphere to represent it.
-    The sphere will not be affected by other lights.
-    """
-    # Create the light
+def create_light_with_sphere(renderer, color, position):
+
     light = vtkLight()
     light.SetColor(color)
     light.SetPosition(position)
@@ -51,10 +46,10 @@ def main():
     renderer.SetBackground(0.2, 0.0, 0.4)
     renderer.AddActor(mainSphereActor)
 
-    createLightWithSphere(renderer, (1, 0, 0), (-5, 0, 0))  # Red light
-    createLightWithSphere(renderer, (0, 1, 0), (0, 0, -5))  # Green light
-    createLightWithSphere(renderer, (0, 0, 1), (5, 0, 0))  # Blue light
-    createLightWithSphere(renderer, (1, 1, 0), (0, 0, 5))  # Yellow light
+    create_light_with_sphere(renderer, (1, 0, 0), (-5, 0, 0))  # Red light
+    create_light_with_sphere(renderer, (0, 1, 0), (0, 0, -5))  # Green light
+    create_light_with_sphere(renderer, (0, 0, 1), (5, 0, 0))  # Blue light
+    create_light_with_sphere(renderer, (1, 1, 0), (0, 0, 5))  # Yellow light
 
     renderWindow = vtkRenderWindow()
     renderWindow.AddRenderer(renderer)
