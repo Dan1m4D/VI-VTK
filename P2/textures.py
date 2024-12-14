@@ -1,16 +1,27 @@
 from vtkmodules.all import *
+from shading import render_sphere
 
 def render_plane(textureFile="P2/images/lena.JPG"):
     planeSource = vtkPlaneSource()
     planeSource.SetCenter(0, 0, 0)
     planeSource.SetResolution(100, 100)
+    # # Warp the plane
     # planeSource.SetOrigin(0, 0, 0)
     # planeSource.SetPoint1(20, 30, 0)
     # planeSource.SetPoint2(0, 80, 40)
 
+    # # Apply custom transformation
+    transform = vtkTransform()
+    transform.Translate(0.5, 2, -1)
+
+    filter = vtkTransformPolyDataFilter()
+    filter.SetTransform(transform)
+    filter.SetInputConnection(planeSource.GetOutputPort())
+    
+
 
     planeMapper = vtkPolyDataMapper()
-    planeMapper.SetInputConnection(planeSource.GetOutputPort())
+    planeMapper.SetInputConnection(filter.GetOutputPort())
 
     planeActor = vtkActor()
     planeActor.SetMapper(planeMapper)

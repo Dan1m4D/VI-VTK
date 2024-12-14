@@ -22,6 +22,22 @@ from vtkmodules.all import *
 #     vtkRenderer
 # )
 
+##############################
+# Callback for the interaction
+##############################
+class vtkMyCallback(object):
+    def __init__(self, renderer):
+        self.ren = renderer
+
+    def __call__(self, caller, ev):
+        # Just do this to demonstrate who called callback and the event that triggered it.
+        print(caller.GetClassName(), 'Event Id:', ev)
+        # Now print the camera position.
+        print("Camera Position: %f, %f, %f" % (self.ren.GetActiveCamera().GetPosition()[0],self.ren.GetActiveCamera().GetPosition()[1],self.ren.GetActiveCamera().GetPosition()[2]))
+    
+    # Callback for the interaction
+
+
 def render_cone_p1():
 
     # We Create an instance of vtkConeSource and set some of its
@@ -127,6 +143,12 @@ def main():
     ren2.SetViewport(0.5, 0, 1, 1)
     ren2.GetActiveCamera().Azimuth(90)
     ren2.GetActiveCamera().SetPosition(10, 0, 0)
+
+    ################################################################
+    # Here is where we setup the observer, we do a new and ren1 
+    mo1 = vtkMyCallback(ren2)
+    ren2.AddObserver(vtkCommand.EndEvent,mo1)
+    ################################################################
     
     # Finally we create the render window which will show up on the screen.
     # We put our renderer into the render window using AddRenderer. We also
