@@ -36,12 +36,12 @@ def main():
     # Create the cube faces
     # ROTATION: [angle, x, y, z]
     # TRANSLATION: [x, y, z]
-    face1 = render_cube_face("P2/images/Im1.jpg", [90, 0, 1, 0], [0, 0, 0.5])
-    face2 = render_cube_face("P2/images/Im2.jpg", [90, 0, 1, 0], [0, 0, -0.5])
-    face3 = render_cube_face("P2/images/Im3.jpg", [0, 0, 0, 1], [0, 0, 0.5])
-    face4 = render_cube_face("P2/images/Im4.jpg", [90, 0, 0, 1], [0, 0, -0.5])
-    face5 = render_cube_face("P2/images/Im5.jpg", [90, 1, 0, 0], [0, 0, 0.5])
-    face6 = render_cube_face("P2/images/Im6.jpg", [90, 1 , 0, 0], [0,0 , -0.5])
+    face1 = render_cube_face("./images/Im1.jpg", [90, 0, 1, 0], [0, 0, 0.5])
+    face2 = render_cube_face("./images/Im2.jpg", [90, 0, 1, 0], [0, 0, -0.5])
+    face3 = render_cube_face("./images/Im3.jpg", [0, 0, 0, 1], [0, 0, 0.5])
+    face4 = render_cube_face("./images/Im4.jpg", [90, 0, 0, 1], [0, 0, -0.5])
+    face5 = render_cube_face("./images/Im5.jpg", [90, 1, 0, 0], [0, 0, 0.5])
+    face6 = render_cube_face("./images/Im6.jpg", [90, 1 , 0, 0], [0,0 , -0.5])
 
     # Create the renderer
     ren = vtkRenderer()
