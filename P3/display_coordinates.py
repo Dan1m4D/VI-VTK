@@ -78,6 +78,17 @@ def main():
     selectedSphereActor.SetVisibility(False)
     renderer.AddActor(selectedSphereActor)
 
+    textMapper = vtkTextMapper()
+    textMapper.SetInput("")
+    textMapper.GetTextProperty().SetFontSize(24)
+    textMapper.GetTextProperty().SetBold(5)
+    # textMapper.GetTextProperty().SetFontFamilyToCourier()
+    # textMapper.GetTextProperty().SetJustificationToCentered()
+    textActor = vtkActor2D()
+    textActor.SetMapper(textMapper)
+    textActor.SetVisibility(False)
+    renderer.AddActor(textActor)
+
     def pointer_callback(picker: vtkPointPicker, event):
         pickPosition = picker.GetPickPosition()
         print(f"Picked point coordinates: {pickPosition}")
@@ -86,6 +97,12 @@ def main():
         selectedSphereActor.SetPosition(pickPosition)
         selectedSphereActor.SetVisibility(True)
         selectedSphereActor.GetProperty().SetColor(1.0, 0.0, 0.0)
+
+        coords = f"({pickPosition[0]:.2f}, {pickPosition[1]:.2f}, {pickPosition[2]:.2f})"
+        textMapper.SetInput(coords)
+        textActor.SetVisibility(True)
+
+        textActor.SetPosition(pickPosition[0] + 20, pickPosition[1] + 20)
         renderWindow.Render()
 
     pointPicker.AddObserver(vtkCommand.EndPickEvent, pointer_callback)
