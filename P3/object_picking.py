@@ -57,7 +57,7 @@ def main():
     renderWindow = vtkRenderWindow()
     renderWindow.AddRenderer(renderer)
     renderWindow.SetSize(600, 600)
-    renderWindow.SetWindowName("Cone, Sphere, and Glyph")
+    renderWindow.SetWindowName("O B J E C T   P I C K I N G")
 
     iren = vtkRenderWindowInteractor()
     iren.SetRenderWindow(renderWindow)

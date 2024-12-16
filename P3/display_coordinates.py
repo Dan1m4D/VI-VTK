@@ -57,7 +57,7 @@ def main():
     renderWindow = vtkRenderWindow()
     renderWindow.AddRenderer(renderer)
     renderWindow.SetSize(600, 600)
-    renderWindow.SetWindowName("Cone, Sphere, and Glyph")
+    renderWindow.SetWindowName("D I S P L A Y   C O O R D I N A T E S")
 
     iren = vtkRenderWindowInteractor()
     iren.SetRenderWindow(renderWindow)
