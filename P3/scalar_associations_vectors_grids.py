@@ -60,7 +60,6 @@ def main():
     glyph.SetSourceConnection(cone_source.GetOutputPort())
     glyph.SetInputData(ugrid)
     glyph.SetVectorModeToUseVector() # Orient cones by the vector data
-    glyph.SetScaleModeToScaleByVector() # Scale the cones by scalar data
     glyph.SetScaleFactor(0.5) # Set the overall scaling factor for glyphs
 
     glyph_mapper = vtkPolyDataMapper()
